@@ -1,5 +1,6 @@
 package com.wangtao.consumer.controller;
 
+import brave.baggage.BaggageField;
 import com.wangtao.consumer.feign.UserFeignClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,10 @@ public class TraceController {
     @GetMapping("/trace")
     public Map<String, Object> trace() {
         log.info("=============trace=============");
+        // 往下游传递userId
+        BaggageField.getByName("userId").updateValue("123456");
+        // 往下游传递userName
+        BaggageField.getByName("userName").updateValue("zhangsan");
         return userFeignClient.get();
     }
 }
