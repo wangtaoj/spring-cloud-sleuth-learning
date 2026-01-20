@@ -12,6 +12,7 @@
     <module>gateway</module>
     <module>service-producer</module>
     <module>service-consumer</module>
+    <module>brave-api</module>
   </modules>
 
   <properties>
